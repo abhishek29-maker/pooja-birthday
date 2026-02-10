@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Pooja ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink-soft: #ff319c;
+      --pink-light: #ffe4f0;
+      --pink-main: #ff8fcf;
+      --pink-deep: #ff5fa2;
+      --peach: #e9bdff;
+      --lavender: #f5eaff;
+      --shadow-glow: rgba(255,95,162,0.25);
+      --glow-pink: rgba(255,95,162,0.35);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    .section{
+  z-index: 1;
+}
+.section.active{
+  z-index: 10;
+  pointer-events: auto;
+}
+.section{
+  pointer-events: none;
+}
+.section.active{
+  pointer-events: auto;
+}
+
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--pink-light), var(--peach), var(--lavender), var(--pink-soft));
+      background-size: 300% 300%;
+      animation: dreamyFlow 32s ease infinite;
+      color: #3f1e2e;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    @keyframes dreamyFlow {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #e9d9f6, #e9b4f8, #eaddf5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease;
+    }
+    #loader.hidden { opacity: 0; pointer-events: none; }
+
+    .heartbeat {
+      font-size: clamp(5rem, 18vw, 12rem);
+      color: var(--pink-deep);
+      animation: heartbeatAnim 1.2s infinite ease-in-out;
+      text-shadow: 0 0 30px rgba(255,95,162,0.6);
+    }
+    @keyframes heartbeatAnim { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+
+    .loading-text {
+      margin-top: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 6vw, 2.8rem);
+      color: var(--pink-deep);
+      opacity: 0.9;
+    }
+
+    .section {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1rem;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+      pointer-events: none;
+      overflow-y: auto;
+    }
+
+    .section.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .content-box {
+      max-width: 960px;
+      width: 100%;
+      padding: 2rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+
+    h1 { font-family: 'Great Vibes', cursive; font-size: clamp(4.5rem, 14vw, 8rem); color: var(--pink-deep); margin-bottom: 1.5rem; text-shadow: 0 4px 15px rgba(255,95,162,0.4); }
+    h2 { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(2.4rem, 8vw, 4.5rem); color: #ff6b9e; margin: 0 0 2rem; }
+
+    p { font-size: clamp(1.1rem, 4vw, 1.45rem); line-height: 1.7; max-width: 720px; margin-bottom: 2.5rem; color: #5a3a4f; }
+
+    .main-btn {
+      padding: 14px 32px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      background: linear-gradient(45deg, #ff5fa2, #ff8fcf);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255,95,162,0.4);
+      transition: all 0.4s ease;
+    }
+    .main-btn:hover { transform: scale(1.08); box-shadow: 0 12px 30px rgba(255,95,162,0.6); }
+
+    .yes-btn { background: linear-gradient(135deg, #7ed7a7, #aaefd5); color: #0a5c00; }
+    .no-btn  { background: linear-gradient(135deg, #ff6b6b, #ee5253); color: white; position: relative; transition: all 0.3s ease; }
+
+    .qna-buttons {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      min-height: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      margin: 3rem 0;
+    }
+
+    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 2.5rem; margin: 3rem 0; }
+    .polaroid { background: white; padding: 1.4rem; border-radius: 22px; width: 280px; box-shadow: 0 14px 40px var(--shadow-glow); transition: all 0.5s; }
+    .polaroid:hover { transform: translateY(-15px) scale(1.06) rotate(2deg); }
+    .polaroid img { width: 100%; border-radius: 16px; }
+
+    /* --- TIMELINE STYLES FIXED --- */
+    .timeline-container {
+      max-width: 900px;
+      width: 100%;
+      margin: 3rem auto;
+      position: relative;
+    }
+
+    .timeline-container::before {
+      content: "";
+  
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--pink-main), var(--pink-soft));
+      border-radius: 10px;
+      transform: translateX(-50%);
+    }
+
+    .timeline-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 50px 0;
+      width: 100%;
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .timeline-block.visible { opacity: 1; transform: translateY(0); }
+
+    .timeline-content {
+      width: 42%;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(255,95,162,0.2);
+    }
+
+    .timeline-content h3 { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: #ff5fa2; }
+
+    .timeline-img {
+      width: 170px;
+      height: 170px;
+      border-radius: 43%;
+      object-fit: cover;
+      border: 5px solid white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      z-index: 5;
+    }
+
+    .empty-space { width: 42%; }
+
+    /* Left Block: Content - Image - Empty */
+    .left .timeline-content { text-align: right; order: 1; }
+    .left .timeline-img { order: 2; }
+    .left .empty-space { order: 3; }
+
+    /* Right Block: Empty - Image - Content */
+    .right .empty-space { order: 1; }
+    .right .timeline-img { order: 2; }
+    .right .timeline-content { text-align: left; order: 3; }
+
+    @media (max-width: 768px) {
+      .timeline-container::before { left: 30px; }
+      .timeline-block { flex-direction: row !important; justify-content: flex-start; margin: 30px 0; }
+      .timeline-img { width: 70px; height: 70px; position: absolute; left: -5px; }
+      .timeline-content { width: calc(100% - 80px); margin-left: 80px; text-align: left !important; }
+      .empty-space { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .timeline-container::before { left: 35px; transform: none; }
+      .timeline-block { flex-direction: column; text-align: center; }
+      .timeline-img { margin-bottom: 1.5rem; order: 1 !important; }
+      .timeline-content { width: 90%; text-align: center !important; }
+    }
+
+    .hearts { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .heart { position: absolute; font-size: 2.5rem; animation: floatHeart 12s linear infinite; opacity: 0.8; }
+    @keyframes floatHeart { 0% { transform: translateY(110vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.9; } 100% { transform: translateY(-30vh) rotate(720deg); opacity: 0; } }
+
+    .fireworks { position: absolute; inset: 0; pointer-events: none; z-index: 5; }
+    .spark { position: absolute; width: 12px; height: 12px; border-radius: 50%; animation: sparkAnim 2.8s infinite; }
+    @keyframes sparkAnim { 0%,100% { opacity: 0; transform: scale(0.4); } 50% { opacity: 1; transform: scale(1.8) translateY(-100px); } }
+  </style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="heartbeat">💗</div>
+  <div class="loading-text">Loading love & surprises...</div>
+</div>
+
+<audio id="music" loop preload="auto">
+  <source src="https://cdn.pixabay.com/download/audio/2023/07/14/audio_romantic_piano_example.mp3">
+</audio>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- Start -->
+<div id="start" class="section active">
+  <div class="content-box">
+    <h1>Happy Birthday Pooja 🎂❤️</h1>
+    <button class="main-btn" onclick="go('pre')">Click to Begin 💕</button>
+  </div>
+</div>
+
+<!-- Pre -->
+<div id="pre" class="section">
+  <div class="content-box">
+    <h2>Before the big surprise 😌</h2>
+    <p>READY FOR A TINY TEST? YOUR SURPRISE DEPENDS ON IT 😈💖</p>
+    <button class="main-btn" onclick="go('q1')">Continue 👉</button>
+  </div>
+</div>
+
+<!-- Questions -->
+<div id="q1" class="section">
+  <div class="content-box">
+    <h2>Do you love me? 😏</h2>
+    <div class="qna-buttons">
+      <button class="yes-btn main-btn" onclick="go('q2')">YES ❤️</button>
+      <button class="no-btn main-btn" onmouseover="evade(this)" ontouchstart="evade(this)">NO 😌</button>
+    </div>
+  </div>
+</div>
+
+<div id="q2" class="section">
+  <div class="content-box">
+    <h2>Do you think I love you more than you love me? 😌</h2>
+    <div class="qna-buttons">
+      <button class="yes-btn main-btn" onclick="go('q3')">YES ❤️</button>
+      <button class="no-btn main-btn" onmouseover="evade(this)" ontouchstart="evade(this)">NO 😌</button>
+    </div>
+  </div>
+</div>
+
+<div id="q3" class="section">
+  <div class="content-box">
+    <h2>Do you think you are smart? 🧠😌</h2>
+    <div class="qna-buttons">
+      <button class="yes-btn main-btn" onclick="go('mem')">NO 😌</button>
+      <button class="no-btn main-btn" onmouseover="evade(this)" ontouchstart="evade(this)">YES 😌</button>
+    </div>
+  </div>
+</div>
+
+<!-- Gallery -->
+<div id="mem" class="section">
+  <div class="content-box">
+    <h2>Best Moments With You</h2>
+    <div class="gallery">
+      <div class="polaroid"><img src="3.jpeg"><p>Our smiles</p></div>
+      <div class="polaroid"><img src="5.jpeg"><img src="6.jpeg"><img src="7.jpeg"><p>Pure love</p></div>
+      <div class="polaroid"><img src="4.jpeg"><p>Memories</p></div>
+
+    </div>
+    <button class="main-btn" onclick="go('timeline')">See Our Journey 💖</button>
+  </div>
+</div>
+
+<!-- Timeline -->
+<div id="timeline" class="section">
+  <div class="content-box"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <h2 >Our Love Timeline ❤️</h2>
+    <div class="timeline-container">
+      
+      <div class="timeline-block left">
+        <div class="timeline-content">
+          <h3>First long trip</h3>
+          <p>MEMORABLE ROAD TRIP WHERE WE BOTH WERE NEW TO EACH OTHER🧿🏍️😘</p>
+        </div>
+        <img src="video/PHOTO-2024-07-11-13-18-27.jpg" class="timeline-img">
+        <div class="empty-space"></div>
+      </div>
+
+      <div class="timeline-block right">
+        <div class="empty-space"></div>
+        <img src="video/WhatsApp Image 2026-02-10 at 20.55.15 (1).jpeg" class="timeline-img">
+        <div class="timeline-content">
+          <h3>First Night </h3>
+          <p>first unforggetable night which is crying dark secrets🧿💋😘 </p>
+        </div>
+      </div>
+
+      <div class="timeline-block left">
+        <div class="timeline-content">
+          <h3>hardest good bye</h3>
+          <p>The day were we both cried affraids from getting seprate but somehow we managed very well🥺❤️😘</p>
+        </div>
+        <img src="video/3.jpeg" class="timeline-img">
+        <div class="empty-space"></div>
+      </div>
+       <div class="timeline-block right">
+        <div class="empty-space"></div>
+        <img src="video/image.png" class="timeline-img">
+        <div class="timeline-content">
+          <h3>Our hardest time</h3>
+          <p>idk how but we prrof that long distance relationship works no matter the cost we will be same rest of the life 🧿😘🧸🥰</p>
+        </div>
+      </div>
+      <div class="timeline-block left">
+        <div class="timeline-content">
+          <h3>happy comeback</h3>
+          <p>our first festival which we celebeate and we will celebrate rest of the life 😀🥰🧿😘</p>
+        </div>
+        <img src="video/4.jpeg" class="timeline-img">
+        <div class="empty-space"></div>
+      </div>
+       <div class="timeline-block right">
+        <div class="empty-space"></div>
+        <img src="video/5.jpeg" class="timeline-img">
+        <div class="timeline-content">
+          <h3>our type of celebrations</h3>
+          <p>you are the one who putted me on the correct path of devotion and all still more to learn from you my motki</p>
+        </div>
+      </div>
+    </div> <button class="main-btn" onclick="go('final')">Final Surprise 🎂</button>
+  </div>
+</div> <div id="final" class="section">
+  <div class="fireworks" id="fire"></div>
+  <div class="content-box">
+    <h1>Happy Birthday My Love ❤️</h1>
+    <video controls autoplay playsinline width="80%" style="max-width:560px; margin:25px 0; border-radius:16px; box-shadow:0 10px 30px rgba(0,0,0,0.4);">
+      <source src="video/11907261-hd_1920_1080_50fps.mp4" type="video/mp4">
+    </video>
+    <p>Forever yours,<br><strong>— Abhishek 💫</strong></p>
+  </div>
+</div>
+
+<script>
+// Loader
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loader').classList.add('hidden');
+    setTimeout(() => document.getElementById('loader').remove(), 900);
+  }, 2500);
+});
+
+// Music
+document.addEventListener('click', () => {
+  document.getElementById('music').play().catch(()=>{});
+}, {once: true});
+
+function go(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  
+  // Trigger timeline animation when section becomes active
+  if (id === 'timeline') {
+    setTimeout(() => {
+      document.querySelectorAll('.timeline-block').forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, index * 400);
+      });
+    }, 300);
+  }
+
+  if (id === 'final') fireworks();
+  window.scrollTo(0, 0);
+}
+
+function evade(btn) {
+  const padding = 80;
+  const maxX = window.innerWidth - btn.offsetWidth - padding * 2;
+  const maxY = window.innerHeight - btn.offsetHeight - padding * 2;
+  if (maxX < 100 || maxY < 100) return;
+  const newX = padding + Math.random() * maxX;
+  const newY = padding + Math.random() * maxY;
+  btn.style.position = 'fixed';
+  btn.style.left = newX + 'px';
+  btn.style.top = newY + 'px';
+  btn.style.transform = `rotate(${Math.random()*20 - 10}deg) scale(${0.92 + Math.random()*0.16})`;
+}
+
+// Hearts
+setInterval(() => {
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.innerHTML = ['💋','💖','🧸','💞','❤️'][Math.floor(Math.random()*4)];
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.animationDuration = (Math.random() * 6 + 8) + 's';
+  document.getElementById('hearts').appendChild(h);
+  setTimeout(() => h.remove(), 14000);
+}, 700);
+
+function fireworks() {
+  const f = document.getElementById('fire');
+  for (let i = 0; i < 60; i++) {
+    const s = document.createElement('div');
+    s.className = 'spark';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top  = Math.random() * 80 + '%';
+    s.style.background = ['#ff8fcf','#ffd1dc','#ffffff','#ff6b9e'][Math.floor(Math.random()*4)];
+    f.appendChild(s);
+  }
+}
+</script>
+</body>
+</html>
